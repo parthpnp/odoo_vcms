@@ -1,0 +1,124 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="vcms_demo.list">
+      <field name="name">vcms_demo list</field>
+      <field name="model">vcms_demo.vcms_demo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="address"/>
+          <field name="number"/>
+          <field name="email"/>t-
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="vcms_demo.form">
+      <field name="name">vcms_demo list</field>
+      <field name="model">vcms_demo.vcms_demo</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <field name="img" widget="image" class="oe_left oe_avatar"/>
+            <h2>
+              <field name="name" placeholder="Company Name"/>
+            </h2>
+            <group string="Contact Information">
+              <group>
+                <field name="address"/>
+                <field name="number"/>
+                <field name="email"/>
+              </group>
+              <group>
+                <field name="city"/>
+              </group>
+            </group>
+            <group string="Decription">
+                <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="vcms_demo.kanban">
+      <field name="name">vcms_demo list</field>
+      <field name="model">vcms_demo.vcms_demo</field>
+      <field name="arch" type="xml">
+        <kanban class="oe_background_grey">
+            <field name="name"/>
+            <field name="address"/>
+            <field name="number"/>
+            <field name="email"/>
+            <field name="description"/>
+            <field name="img"/>
+            <templates>
+              <t t-name="kanban-box">
+                <div class="oe_kanban_global_click o_res_partner_kanban">
+                <div class="oe_kanban_vignette">
+                      <div class="o_kanban_image">
+                        <img t-att-src="kanban_image('vcms_demo.vcms_demo', 'img', record.id.value)" class="oe_resource_picture"/>
+                      </div>
+                      <div class="oe_kanban_details">
+                       <strong><field name="name"/></strong>
+                       <ul>
+                          <li>Address    : <field name="address"/></li>
+                          <li>Mobile     : <field name="number"/></li>
+                          <li>Email      : <field name="email"/></li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>  
+              </t>  
+          </templates>
+        </kanban>
+      </field>
+    </record>
+    
+    <!-- actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="vcms_demo.action_window">
+      <field name="name">vcms_demo window</field>
+      <field name="res_model">vcms_demo.vcms_demo</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+    
+
+    <!-- server action to the one above -->
+    
+<!--     <record model="ir.actions.server" id="vcms_demo.action_server">
+      <field name="name">vcms_demo server</field>
+      <field name="model_id" ref="model_vcms_demo_vcms_demo"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record> -->
+
+            
+
+    <!-- Top menu item -->
+    
+    <menuitem name="vcms_demo" id="vcms_demo.menu_root"/>
+    
+    <!-- menu categories -->
+    
+    <menuitem name="Menu 1" id="vcms_demo.menu_1" parent="vcms_demo.menu_root"/>
+<!--     <menuitem name="Menu 2" id="vcms_demo.menu_2" parent="vcms_demo.menu_root"/> -->
+    
+    <!-- actions -->
+    
+    <menuitem name="List" id="vcms_demo.menu_1_list" parent="vcms_demo.menu_1"
+              action="vcms_demo.action_window"/>
+    <!-- <menuitem name="Server to list" id="vcms_demo" parent="vcms_demo.menu_2"
+              action="vcms_demo.action_server"/> -->
+    
+  </data>
+</openerp>

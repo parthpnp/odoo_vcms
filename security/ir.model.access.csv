@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vcms_demo_vcms_demo,vcms_demo.vcms_demo,model_vcms_demo_vcms_demo,,1,0,0,0
